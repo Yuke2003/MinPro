@@ -18,7 +18,7 @@
     "backend": "cd frontend && npm start",
     "frontend":"cd frontend && npm run dev ",
     "start": "concurrently \"npm run frontend\" \"npm run backend\"",
-    "build": "npm install && npm install --prefix frontend"
+    "build": "npm install && npm install --prefix frontend && npm install --prefix backend"
   },
   "name": "backend",
   "version": "1.0.0",
