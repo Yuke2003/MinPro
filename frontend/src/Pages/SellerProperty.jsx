@@ -4,17 +4,20 @@ import Header from "./Header";
 import { useAuthContext } from "../Context/authContext";
 import axios from "axios";
 import { FiMapPin } from "react-icons/fi";
+import Loader from "./Loader";
 
 const SellerProperty = () => {
   const { authUser } = useAuthContext();
   const [getUser, setGetUser] = useState([]);
+  const [loading,setLoading] = useState(false)
   const [rentId,setRentId] = useState("")
 
   useEffect(() => {
     const getOneUser = async () => {
+      setLoading(true)
       try {
         const response = await axios.get(
-          `http://localhost:8000/api/v1/auth/${authUser.data.user._id}`,
+          `https://minpro-1.onrender.com/api/v1/auth/${authUser.data.user._id}`,
           {
             headers: {
               Authorization: `Bearer ${authUser.token}`, // Send token in Authorization header
@@ -25,6 +28,8 @@ const SellerProperty = () => {
         setGetUser(data.data.getOneUser.rentDetails);
       } catch (err) {
         console.log(err.message);
+      }finally{
+        setLoading(false)
       }
     };
     getOneUser();
@@ -33,7 +38,7 @@ const SellerProperty = () => {
   useEffect(()=>{
     const DeleteUser = async()=>{
         try{
-            const response = await axios.delete(`http://localhost:8000/api/v1/rents/${rentId}`,
+            const response = await axios.delete(`https://minpro-1.onrender.com/api/v1/rents/${rentId}`,
             {
                 headers: {
                   Authorization: `Bearer ${authUser.token}`, // Send token in Authorization header
@@ -56,9 +61,9 @@ const SellerProperty = () => {
   return (
     <div>
       <Header />
-      <div id="rentDetails" className=" p-11 ">
+      {loading ? <Loader /> :<div id="rentDetails" className=" p-11 ">
         <h1 className="text-black font-bold text-2xl text-center mb-7">My Property</h1>
-        <ul className="flex items-center justify-center gap-40" >
+        <ul className="grid place-items-center grid-cols-3 gap-40" >
           {getUser.map((Item) => (
             <li key={Item.id}>
               <div>
@@ -88,7 +93,7 @@ const SellerProperty = () => {
             </li>
           ))}
         </ul>
-      </div>
+      </div>}
     </div>
   );
 };

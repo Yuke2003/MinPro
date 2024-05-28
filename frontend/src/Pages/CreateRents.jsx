@@ -26,13 +26,13 @@ const CreateRents = () => {
   useEffect(() => {
     setCreateInput((prevInput) => ({ ...prevInput, photo: filename }));
   }, [filename]);
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
       const response = await axios.post(
-        "http://localhost:8000/api/v1/rents",
+        "https://minpro-1.onrender.com/api/v1/rents",
         createInput,
         {
           headers: {

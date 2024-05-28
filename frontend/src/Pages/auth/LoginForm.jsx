@@ -3,28 +3,31 @@ import React, { useState } from "react";
 import Header from "../Header";
 import { useAuthContext } from "../../Context/authContext";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Loader from "../Loader";
 
 const LoginForm = () => {
+  // const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { setAuthUser, setLoading } = useAuthContext();
+  const [loading, setLoading] = useState(false);
+  const { setAuthUser } = useAuthContext();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
       const response = await axios.post(
-        "http://localhost:8000/api/auth/login",
-        { email,password }
+        "https://minpro-1.onrender.com/api/v1/auth/login",
+        { email, password }
       );
       const data = response.data;
       console.log(data);
       console.log(data.token);
       localStorage.setItem("user-info", JSON.stringify(data));
       setAuthUser(data);
-      setEmail("")
-      setPassword("")
+      navigate("/RentDetail");
       if (data.error) {
         throw new Error(data.error);
       }
@@ -34,8 +37,6 @@ const LoginForm = () => {
       setLoading(false);
     }
   };
-
-  
 
   return (
     <div>
@@ -65,9 +66,13 @@ const LoginForm = () => {
               placeholder="password"
             />
           </div>
-          <Link to="/signup"><h3 className="hover:text-blue-500 underline mt-2">Dont have an account?</h3></Link>
-         <button className="text-center w-96 text-[#f7f7f7] p-2 mt-4 rounded-full bg-[#444]">
-            Log In
+          <Link to="/signup">
+            <h3 className="hover:text-blue-500 underline mt-2">
+              Dont have an account?
+            </h3>
+          </Link>
+          <button className="text-center w-96 text-[#f7f7f7] p-2 mt-4 rounded-full bg-[#444]">
+            {loading ? <Loader /> : "Log In"}
           </button>
         </form>
       </div>

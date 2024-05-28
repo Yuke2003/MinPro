@@ -6,13 +6,15 @@ import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 
 const ProfilePage = () => {
-  const { authUser } = useAuthContext();
+  const { authUser,setAuthUser,setRentId } = useAuthContext();
   const navigate = useNavigate();
 
   const logout = (e) => {
     e.preventDefault();
     localStorage.removeItem("user-info");
-    localStorage.removeItem("rentId")
+    localStorage.removeItem("rentId");
+    setAuthUser(null)
+    setRentId(null)
     navigate("/login");
   };
 

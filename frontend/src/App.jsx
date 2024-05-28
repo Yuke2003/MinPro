@@ -7,17 +7,22 @@ import { useAuthContext } from "./Context/authContext";
 import OneRentDetail from "./Pages/OneRentDetail";
 import ProfilePage from "./Pages/ProfilePage";
 import SellerProperty from "./Pages/SellerProperty";
+import RentDetails from "./Pages/RentDetails";
 
 function App() {
   const { authUser } = useAuthContext();
   return (
     <>
       <Routes>
-        <Route path="/" element={authUser ? <HomePage /> : <Navigate to="/login" />} />
+        <Route
+          path="/"
+          element={authUser ? <HomePage /> : <Navigate to="/login" />}
+        />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/signup" element={<SignUpForm />} />
         <Route path="/createProperty" element={<CreateRents />} />
-        <Route path="/RentDetail" element={<OneRentDetail />} />
+        <Route path="/OneRentDetail" element={<OneRentDetail />} />
+        <Route path="/RentDetail" element={<RentDetails />} />
         <Route path="/ProfilePage" element={<ProfilePage />} />
         <Route path="/MyProperty" element={<SellerProperty />} />
       </Routes>
