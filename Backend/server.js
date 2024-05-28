@@ -29,7 +29,7 @@ mongoose.connect(DB).then((con) => {
 
 app.use(
   cors({
-    origin: "http://localhost:5173", // Specify the allowed origin
+    origin: "https://minpro-1.onrender.com", // Specify the allowed origin
     methods: ["GET", "POST", "PUT", "DELETE"], // Specify the allowed HTTP methods
     allowedHeaders: ["Content-Type", "Authorization"], // Specify the allowed headers
   })
