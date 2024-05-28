@@ -15,8 +15,10 @@
     "sharp": "^0.33.4"
   },
   "scripts": {
-    "start": "nodemon server.js",
-    "build":"npm install"
+    "backend": "nodemon backend/server.js",
+    "frontend": "cd frontend && npm run dev ",
+    "start": "concurrently \"npm run frontend\" \"npm run backend\"",
+    "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend"
   },
   "name": "backend",
   "version": "1.0.0",

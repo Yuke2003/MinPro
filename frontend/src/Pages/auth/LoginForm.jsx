@@ -15,7 +15,7 @@ const LoginForm = () => {
     setLoading(true);
     try {
       const response = await axios.post(
-        "https://minpro-lcg3.onrender.com/login",
+        "http://localhost:8000/api/auth/login",
         { email,password }
       );
       const data = response.data;
