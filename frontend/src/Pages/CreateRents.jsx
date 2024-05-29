@@ -32,7 +32,7 @@ const CreateRents = () => {
     setLoading(true);
     try {
       const response = await axios.post(
-        "https://minpro-backend.onrender.com/api/v1/rents",
+        "https://minpro-1.onrender.com/api/v1/rents",
         createInput,
         {
           headers: {
