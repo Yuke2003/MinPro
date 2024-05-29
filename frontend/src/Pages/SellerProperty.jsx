@@ -17,7 +17,7 @@ const SellerProperty = () => {
       setLoading(true)
       try {
         const response = await axios.get(
-          `https://minpro-1.onrender.com/api/v1/auth/${authUser.data.user._id}`,
+          `hhttps://minpro-backend.onrender.com/api/v1/auth/${authUser.data.user._id}`,
           {
             headers: {
               Authorization: `Bearer ${authUser.token}`, // Send token in Authorization header
