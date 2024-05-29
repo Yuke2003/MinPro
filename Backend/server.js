@@ -29,7 +29,7 @@ mongoose.connect(DB).then((con) => {
 
 app.use(
   cors({
-    origin: "https://minpro-fontend.onrender.com", // Specify the allowed origin
+    origin: "https://minpro-2.onrender.com", // Specify the allowed origin
     methods: ["GET", "POST", "PUT", "DELETE"], // Specify the allowed HTTP methods
     allowedHeaders: ["Content-Type", "Authorization"], // Specify the allowed headers
   })
@@ -37,7 +37,7 @@ app.use(
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "https://minpro-fontend.onrender.com/public/uploads");
+    cb(null, "https://minpro-2.onrender.com/public/uploads");
   },
   filename: function (req, file, cb) {
     const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
