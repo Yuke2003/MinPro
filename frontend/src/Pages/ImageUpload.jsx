@@ -21,7 +21,7 @@ const ImageUpload = () => {
 
     try {
       const res = await axios.post(
-        "https://minpro-1.onrender.com/api/v1/upload",
+        "https://minpro-backend.onrender.com/api/v1/upload",
         formData,
         {
           headers: {
