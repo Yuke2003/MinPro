@@ -21,7 +21,7 @@ const OneRentDetail = () => {
       setLoading(true);
       try {
         const response = await axios.get(
-          `https://minpro-backend.onrender.com/api/v1/rents/${
+          `https://minpro-1.onrender.com/api/v1/rents/${
             rentId || localStorage.getItem("rentId")
           }`,
           {
