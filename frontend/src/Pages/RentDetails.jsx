@@ -22,7 +22,7 @@ const RentDetails = () => {
       setLoading(true);
       try {
         const response = await axios.get(
-          "https://minpro-backend.onrender.com/api/v1/rents",
+          "https://minpro-1.onrender.com/api/v1/rents",
           {
             headers: {
               Authorization: `Bearer ${authUser.token}`, // Send token in Authorization header
