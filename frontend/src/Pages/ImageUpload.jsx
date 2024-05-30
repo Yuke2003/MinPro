@@ -5,13 +5,14 @@ import { useAuthContext } from "../Context/authContext";
 
 const ImageUpload = () => {
   const [image, setImage] = useState([]);
+  const [photoName, setPhotoName] = useState("");
   const [uploadMessage, setUploadMessage] = useState("");
-  const { filename, setFilename } = useAuthContext();
+  const { setFilename } = useAuthContext();
 
   const handleFileChange = (e) => {
     setImage(e.target.files[0]);
     console.log(e.target.files[0]);
-    setFilename(e.target.files[0].name);
+    setPhotoName(e.target.files[0].name);
   };
 
   const handleUpload = async (e) => {
@@ -21,7 +22,7 @@ const ImageUpload = () => {
 
     try {
       const res = await axios.post(
-        "https://minpro-1.onrender.com/api/v1/upload",
+        "http://localhost:8000/api/v1/upload",
         formData,
         {
           headers: {
@@ -31,7 +32,7 @@ const ImageUpload = () => {
       );
       console.log(res.data);
       // const data = res.data;
-
+      setFilename(res.data.imageUrl);
       setUploadMessage("Upload image succesfully");
     } catch (err) {
       console.log(err.message);
@@ -56,7 +57,7 @@ const ImageUpload = () => {
           Upload
         </button>
       </form>
-      {uploadMessage && <p>Uploaded filename: {filename}</p>}
+      {uploadMessage && <p>Uploaded filename: {photoName}</p>}
     </div>
   );
 };
