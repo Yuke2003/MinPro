@@ -15,6 +15,8 @@ dotenv.config({ path: "./config.env" });
 const PORT = process.env.PORT || 8000;
 console.log(process.env.PORT);
 
+const _dirname = path.resolve();
+
 const DB = process.env.MongoDB;
 app.use(cors());
 app.use(morgan("dev"));
@@ -35,21 +37,28 @@ app.use(
   })
 );
 
+const uploadDir = path.join(_dirname, "Backend/uploads");
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir, { recursive: true });
+}
+
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "https://minpro-2.onrender.com/public/uploads");
+    cb(null, uploadDir);
   },
   filename: function (req, file, cb) {
     const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-    cb(null, file.originalname);
+    cb(null, uniqueSuffix + "-" + file.originalname);
   },
 });
 
-const upload = multer({ storage });
+const upload = multer({ storage: storage });
 
 app.post("/api/v1/upload", upload.single("image"), (req, res) => {
-  res.status(200).json(req.file);
+  res.status(200).json({ imageUrl: `/uploads/${req.file.filename}` });
 });
+// Serve static files from the 'Backend/uploads' directory
+app.use("/uploads", express.static(path.join(_dirname, "Backend/uploads")));
 app.get("/", (req, res) => {
   res.send("hello world");
 });
