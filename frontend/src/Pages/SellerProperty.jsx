@@ -70,7 +70,7 @@ const SellerProperty = () => {
                 <div className="shadow-2xl w-80 h-auto">
                   <div className="image">
                     <img
-                      src={`/uploads/${Item.photo}`}
+                      src={`https://minpro-1.onrender.com${Item.photo}`}
                       className="w-full h-full object-cover"
                     />
                   </div>
