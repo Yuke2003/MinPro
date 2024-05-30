@@ -73,7 +73,7 @@ const OneRentDetail = () => {
                 For Rent
               </p>
               <p className=" bg-green-700 p-2 rounded-lg px-4 text-white">
-                {getOneRent.discountPrice} Discount
+                {getOneRent.discountPrice}% Discount
               </p>
             </div>
           </div>
