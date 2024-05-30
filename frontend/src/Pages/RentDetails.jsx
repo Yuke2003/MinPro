@@ -112,8 +112,8 @@ const RentDetails = () => {
                     </div>
                     <div className="flex items-center gap-16 bg-[#f2eeee] w-80 h-auto p-5">
                       <div className="flex flex-col gap-2">
-                        <p>$ {Item.regularPrice}</p>
-                        <p>{Item.discountPrice} Discount</p>
+                        <p>$ {Item.regularPrice}/Month</p>
+                        <p>{Item.discountPrice}% Discount</p>
                       </div>
                       <Link to="/OneRentDetail">
                         <button
