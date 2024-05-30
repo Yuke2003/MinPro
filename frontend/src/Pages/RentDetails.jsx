@@ -46,7 +46,7 @@ const RentDetails = () => {
   };
 
   return (
-    <div className="p-7">
+    <div className="p-3">
       <Header />
       <div>
         {loading ? (
