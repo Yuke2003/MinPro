@@ -6,6 +6,7 @@ const cors = require("cors");
 const morgan = require("morgan");
 const multer = require("multer");
 const app = express();
+const fs = require("fs")
 const path = require("path");
 const userRouter = require("./routes/userRoute");
 const rentRouter = require("./routes/rentRoutes");
