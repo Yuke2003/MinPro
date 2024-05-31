@@ -54,13 +54,17 @@ const RentDetails = () => {
         ) : (
           <>
             <div className="p-2 px-4 mt-8"></div>
-            <div>
-              <Link to="/createProperty">
-                <button className="text-[#fff] bg-[#444] p-1  px-3 mb-2 rounded-lg">
-                  + Create Rent
-                </button>
-              </Link>
-            </div>
+            {authUser.data.user.role === "buyer" ? (
+              ""
+            ) : (
+              <div className="">
+                <Link to="/createProperty">
+                  <button className="text-[#fff] bg-[#444] p-1  px-3 mb-2 rounded-lg">
+                    + Create Rent
+                  </button>
+                </Link>
+              </div>
+            )}
             <ul className="grid grid-cols-3 place-items-center">
               {rentDetails.map((Item) => (
                 <li key={Item.id}>
