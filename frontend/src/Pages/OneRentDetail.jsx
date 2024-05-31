@@ -48,7 +48,7 @@ const OneRentDetail = () => {
         <div id="image">
           <img
             className=" w-screen h-96 object-center"
-            src={`https://minpro-1.onrender.com${getOneRent.photo}`}
+            src={`./../../uploads/${getOneRent.photo}`}
             alt=""
           />
         </div>
