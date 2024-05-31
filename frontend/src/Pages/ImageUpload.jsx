@@ -5,14 +5,13 @@ import { useAuthContext } from "../Context/authContext";
 
 const ImageUpload = () => {
   const [image, setImage] = useState([]);
-  const [photoName, setPhotoName] = useState("");
   const [uploadMessage, setUploadMessage] = useState("");
-  const { setFilename } = useAuthContext();
+  const { filename,setFilename } = useAuthContext();
 
   const handleFileChange = (e) => {
     setImage(e.target.files[0]);
     console.log(e.target.files[0]);
-    setPhotoName(e.target.files[0].name);
+    setFilename(e.target.files[0].name);
   };
 
   const handleUpload = async (e) => {
@@ -32,7 +31,6 @@ const ImageUpload = () => {
       );
       console.log(res.data);
       // const data = res.data;
-      setFilename(res.data.imageUrl);
       setUploadMessage("Upload image succesfully");
     } catch (err) {
       console.log(err.message);
@@ -57,7 +55,7 @@ const ImageUpload = () => {
           Upload
         </button>
       </form>
-      {uploadMessage && <p>Uploaded filename: {photoName}</p>}
+      {uploadMessage && <p>Uploaded filename: {filename}</p>}
     </div>
   );
 };
