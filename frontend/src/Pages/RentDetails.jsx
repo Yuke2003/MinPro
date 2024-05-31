@@ -67,7 +67,7 @@ const RentDetails = () => {
                   <div className="shadow-2xl w-80 h-auto">
                     <div className="image">
                       <img
-                        src={`./../../uploads/{Item.photo}`}
+                        src={`./../../uploads/${Item.photo}`}
                         alt={`${Item.photo}`}
                         className="w-full h-full object-cover"
                       />
