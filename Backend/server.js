@@ -49,14 +49,14 @@ const storage = multer.diskStorage({
   },
   filename: function (req, file, cb) {
     const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-    cb(null, uniqueSuffix + "-" + file.originalname);
+    cb(null,file.originalname);
   },
 });
 
 const upload = multer({ storage: storage });
 
 app.post("/api/v1/upload", upload.single("image"), (req, res) => {
-  res.status(200).json({ imageUrl: `/uploads/${req.file.filename}` });
+  res.status(200).json(req.file);
 });
 // Serve static files from the 'Backend/uploads' directory
 app.use("/uploads", express.static(path.join(_dirname, "Backend/uploads")));
