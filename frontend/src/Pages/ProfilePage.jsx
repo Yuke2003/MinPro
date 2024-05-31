@@ -34,17 +34,21 @@ const ProfilePage = () => {
               <input
                 type="text"
                 defaultValue={authUser.data.user.username}
+                disabled
                 className="border-2 border-black p-2 rounded w-96"
               />
               <h3 className="font-bold text-xl mt-2">Email</h3>
               <input
                 type="text"
                 defaultValue={authUser.data.user.email}
+                disabled
                 className="border-2 border-black p-2 rounded w-96"
               />
-              <h3 className="font-bold text-xl mt-2">Password</h3>
+              <h3 className="font-bold text-xl mt-2">Role</h3>
               <input
-                type="password"
+                type="text"
+                defaultValue={authUser.data.user.role}
+                disabled
                 className="border-2 border-black p-2 rounded w-96"
               />
             </div>
