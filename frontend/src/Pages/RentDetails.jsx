@@ -40,7 +40,7 @@ const RentDetails = () => {
       }
     };
     getRentDetails();
-  }, [authUser.token]);
+  }, [authUser.token,filterItem,sortItem]);
 
   const handleSetRentId = (id) => {
     setRentId(id);
