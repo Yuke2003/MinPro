@@ -42,7 +42,7 @@ const RentDetails = () => {
       }
     };
     getRentDetails();
-  }, [authUser.token,filterItem,sortItem]);
+  }, [authUser.token,filterItem,sortItem,page]);
 
   const handleSetRentId = (id) => {
     setRentId(id);
