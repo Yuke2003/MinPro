@@ -39,9 +39,6 @@ app.use(
 );
 
 const uploadDir = path.join(_dirname, "Backend/uploads");
-if (!fs.existsSync(uploadDir)) {
-  fs.mkdirSync(uploadDir, { recursive: true });
-}
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
