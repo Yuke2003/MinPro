@@ -12,6 +12,7 @@ import Loader from "./Loader";
 const OneRentDetail = () => {
   const [getOneRent, setGetOneRent] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [sentmessage, setSentMessage] = useState("");
   const { authUser, rentId } = useAuthContext();
 
   // Wherever you set the rentId
@@ -32,6 +33,7 @@ const OneRentDetail = () => {
         );
         const data = response.data;
         setGetOneRent(data.data);
+        localStorage.setItem("emailUser", data.data.user.email);
       } catch (err) {
         console.log(err.message);
       } finally {
@@ -40,6 +42,33 @@ const OneRentDetail = () => {
     };
     getOneRentDetails();
   }, [authUser.token, rentId, setGetOneRent]);
+
+   const handleSendEmail = async () => {
+    try {
+      const res = await axios.post(
+        "https://minpro-1.onrender.com/api/v1/emails",
+        {
+          toEmail: localStorage.getItem("emailUser"),
+          fromEmail: "yukeshmeganathan2003@gmail.com",
+          sendSubject: "Interested in your property listing",
+          sendText:
+            "I came across your property listing on Rentify and I am very interested in learning more about the rental opportunity. The location and amenities seem ideal for my needs .I would love to schedule a time to discuss the property further with you. Please let me know if you have any availability in the next few days to chat on the phone or meet in person if possible",
+          sendHtml:
+            "<p>I came across your property listing on Rentify and I am very interested in learning more about the rental opportunity. The location and amenities seem ideal for my needs. I would love to schedule a time to discuss the property further with you. Please let me know if you have any availability in the next few days to chat on the phone or meet in person if possible</p>",
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${authUser.token}`,
+          },
+        }
+      );
+
+      console.log(res.data);
+    } catch (err) {
+      console.log(err.message);
+      setSentMessage("email sent success fully");
+    }
+  };
 
   return (
     <div>
@@ -109,9 +138,10 @@ const OneRentDetail = () => {
               College
             </p>
           </div>
-          <button className=" text-center w-[540px] mt-3 text-[#dfdcdc] bg-[#444] p-2">
+          <button className=" text-center w-[540px] mt-3 text-[#dfdcdc] bg-[#444] p-2" onClick={handleSendEmail}>
             Contact Seller
           </button>
+           { <div className="text-center font-bold mr-16 ">{`"${sentmessage}"`}</div> }
         </div>
       </div>}
     </div>
