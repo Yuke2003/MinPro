@@ -12,6 +12,7 @@ import Loader from "./Loader";
 const OneRentDetail = () => {
   const [getOneRent, setGetOneRent] = useState([]);
   const [loading, setLoading] = useState(false);
+   const [name, setName] = useState("");
   const [sentmessage, setSentMessage] = useState("");
   const { authUser, rentId } = useAuthContext();
 
@@ -33,6 +34,7 @@ const OneRentDetail = () => {
         );
         const data = response.data;
         setGetOneRent(data.data);
+        setName(data.data.user.username);
         localStorage.setItem("emailUser", data.data.user.email);
       } catch (err) {
         console.log(err.message);
@@ -41,7 +43,7 @@ const OneRentDetail = () => {
       }
     };
     getOneRentDetails();
-  }, [authUser.token, rentId, setGetOneRent]);
+  }, [authUser.token, rentId, setGetOneRent,setName]);
 
    const handleSendEmail = async () => {
     try {
@@ -89,6 +91,9 @@ const OneRentDetail = () => {
             <h1 className="font-bold">
               {getOneRent.name} - {getOneRent.regularPrice}/Month
             </h1>
+            <h3 className=" font-light ">
+                Posted By - {name}
+            </h3>
           </div>
           <div id="address" className="flex flex-col gap-2">
             <h3 className="flex gap-2 items-center font-thin">
