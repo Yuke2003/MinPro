@@ -15,6 +15,8 @@ import Header from "./Header";
 const RentDetails = () => {
   const [rentDetails, setRentDetails] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [sortItem, setSortItem] = useState("");
+  const [filterItem,setFilterItem] = useState("")
   const { authUser, setRentId, rentId } = useAuthContext();
 
   useEffect(() => {
@@ -22,7 +24,7 @@ const RentDetails = () => {
       setLoading(true);
       try {
         const response = await axios.get(
-          "https://minpro-1.onrender.com/api/v1/rents",
+          `https://minpro-1.onrender.com/api/v1/rents?${filterItem}sort=${sortItem}`,
           {
             headers: {
               Authorization: `Bearer ${authUser.token}`, // Send token in Authorization header
@@ -53,18 +55,39 @@ const RentDetails = () => {
           <Loader />
         ) : (
           <>
-            <div className="p-2 px-4 mt-8"></div>
+             <div className="flex items-center ">
             {authUser.data.user.role === "buyer" ? (
               ""
             ) : (
               <div className="">
                 <Link to="/createProperty">
-                  <button className="text-[#fff] bg-[#444] p-1  px-3 mb-2 rounded-lg">
+                  <button className="text-[#fff] bg-[#444] p-1 px-3 mb-2 rounded-lg">
                     + Create Rent
                   </button>
                 </Link>
               </div>
             )}
+
+          <div className="p-3">
+        <select id="sort" onChange={(e) => setSortItem(e.target.value)} className=" border-2 p-1 px-3 mb-2 rounded-xl border-gray-900  ">
+          <option value="">Sort By</option>
+          <option value="regularPrice">MinPrice</option>
+          <option value="-regularPrice">MaxPrice </option>
+          <option value="discountPrice">MinDiscount</option>
+          <option value="-discountPrice">MaxDiscount </option>
+        </select>
+            </div>
+
+            <div className="p-3">
+        <select id="filter" onChange={(e) => setFilterItem(e.target.value)} className=" border-2 p-1 px-3 mb-2 rounded-xl border-gray-900  ">
+          <option value="">Filters</option>
+          <option value="regularPrice[gte]=1000">{`Price >= 1000`}</option>
+          <option value="regularPrice[lte]=1000">{`Price <= 1000`} </option>
+          <option value="regularPrice[gte]=2000">{`Price >= 2000`}</option>
+          <option value="regularPrice[gte]=2500">{`Price >= 2500`} </option>
+        </select>
+            </div>
+            </div>
             <ul className="grid grid-cols-3 place-items-center">
               {rentDetails.map((Item) => (
                 <li key={Item.id}>
