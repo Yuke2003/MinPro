@@ -89,7 +89,7 @@ const OneRentDetail = () => {
         >
           <div id="name">
             <h1 className="font-bold">
-              {getOneRent.name} - {getOneRent.regularPrice}/Month
+              {getOneRent.name} - ${getOneRent.regularPrice}/Month
             </h1>
             <h3 className=" font-light ">
                 Posted By - {name}
