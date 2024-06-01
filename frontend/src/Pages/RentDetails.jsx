@@ -6,6 +6,7 @@ import { MdOutlineBathroom } from "react-icons/md";
 import { FaRegHospital } from "react-icons/fa";
 import { FaBookReader } from "react-icons/fa";
 import { FaLongArrowAltRight } from "react-icons/fa";
+import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useAuthContext } from "../Context/authContext";
@@ -17,6 +18,7 @@ const RentDetails = () => {
   const [loading, setLoading] = useState(false);
   const [sortItem, setSortItem] = useState("");
   const [filterItem,setFilterItem] = useState("")
+  const [page, setPage] = useState(1);
   const { authUser, setRentId, rentId } = useAuthContext();
 
   useEffect(() => {
@@ -24,7 +26,7 @@ const RentDetails = () => {
       setLoading(true);
       try {
         const response = await axios.get(
-          `https://minpro-1.onrender.com/api/v1/rents?${filterItem}sort=${sortItem}`,
+          `https://minpro-1.onrender.com/api/v1/rents?page=${page}&limit=${6}&${filterItem}&sort=${sortItem}`,
           {
             headers: {
               Authorization: `Bearer ${authUser.token}`, // Send token in Authorization header
@@ -161,6 +163,26 @@ const RentDetails = () => {
             </ul>
           </>
         )}
+            <div className="flex items-center justify-between p-8 px-24 ">
+          <div
+            id="left"
+            className="text-[#fff] bg-[#444] text-xl cursor-pointer p-2 px-5"
+            onClick={() => setPage(page - 1)}
+          >
+            <FaArrowLeftLong />
+          </div>
+          {rentDetails.length < 6 ? (
+            ""
+          ) : (
+            <div
+              id="right"
+              className="text-[#fff] bg-[#444] text-xl cursor-pointer p-2 px-5"
+              onClick={() => setPage(page + 1)}
+            >
+              <FaArrowRightLong />
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
