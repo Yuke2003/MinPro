@@ -81,10 +81,10 @@ const RentDetails = () => {
             <div className="p-3">
         <select id="filter" onChange={(e) => setFilterItem(e.target.value)} className=" border-2 p-1 px-3 mb-2 rounded-xl border-gray-900  ">
           <option value="">Filters</option>
-          <option value="regularPrice[gte]=1000">{`Price >= 1000`}</option>
-          <option value="regularPrice[lte]=1000">{`Price <= 1000`} </option>
-          <option value="regularPrice[gte]=2000">{`Price >= 2000`}</option>
-          <option value="regularPrice[gte]=2500">{`Price >= 2500`} </option>
+          <option value="regularPrice[gte]=1000">{`Price >= $1000`}</option>
+          <option value="regularPrice[lte]=1000">{`Price <= $1000`} </option>
+          <option value="regularPrice[gte]=2000">{`Price >= $2000`}</option>
+          <option value="regularPrice[gte]=2500">{`Price >= $2500`} </option>
         </select>
             </div>
             </div>
