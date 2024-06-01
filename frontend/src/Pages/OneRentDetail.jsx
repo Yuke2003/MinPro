@@ -12,7 +12,7 @@ import Loader from "./Loader";
 const OneRentDetail = () => {
   const [getOneRent, setGetOneRent] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [sentmessage, setSentMessage] = useState(null);
+  const [sentmessage, setSentMessage] = useState("");
   const { authUser, rentId } = useAuthContext();
 
   // Wherever you set the rentId
@@ -141,7 +141,7 @@ const OneRentDetail = () => {
           <button className=" text-center w-[540px] mt-3 text-[#dfdcdc] bg-[#444] p-2" onClick={handleSendEmail}>
             Contact Seller
           </button>
-           {sendmessage && <div className="text-center font-bold mr-16 ">{`"${sentmessage}"`}</div> }
+           {sendmessage && <div className="text-center font-bold mr-16 ">{sentmessage}</div> }
         </div>
       </div>}
     </div>
