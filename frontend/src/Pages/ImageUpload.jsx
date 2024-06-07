@@ -2,11 +2,12 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useAuthContext } from "../Context/authContext";
+import Loader from "./Loader";
 
 const ImageUpload = () => {
   const [image, setImage] = useState([]);
   const [uploadMessage, setUploadMessage] = useState("");
-  const { filename,setFilename } = useAuthContext();
+  const { filename,setFilename,loading,setLoading } = useAuthContext();
 
   const handleFileChange = (e) => {
     setImage(e.target.files[0]);
@@ -18,6 +19,7 @@ const ImageUpload = () => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("image", image);
+    setLoading(true);
 
     try {
       const res = await axios.post(
@@ -34,12 +36,16 @@ const ImageUpload = () => {
       setUploadMessage("Upload image succesfully");
     } catch (err) {
       console.log(err.message);
+    }finally{
+      setLoading(false);
     }
   };
 
   return (
     <div>
-      <h1 className="text-lg">Image:</h1>
+     { loading ? <Loader /> :
+     <>
+     <h1 className="text-lg">Image:</h1>
       <form className="flex items-center gap-3">
         <input
           type="file"
@@ -56,6 +62,8 @@ const ImageUpload = () => {
         </button>
       </form>
       {uploadMessage && <p>Uploaded filename: {filename}</p>}
+      </>
+      }
     </div>
   );
 };
