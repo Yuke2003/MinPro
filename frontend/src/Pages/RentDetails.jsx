@@ -51,7 +51,7 @@ const RentDetails = () => {
 
   const handlesubmit = async () => {
     const res = await axios.get(
-      `http://localhost:8000/api/v1/rents/top-5-cheap`,
+      `https://minpro-1.onrender.com/api/v1/rents/top-5-cheap`,
       {
         headers: {
           Authorization: `Bearer ${authUser.token}`, // Send token in Authorization header
