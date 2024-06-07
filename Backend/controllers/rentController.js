@@ -23,7 +23,7 @@ exports.createRent = async (req, res, next) => {
 
 exports.TopRents = (req, res, next) => {
   req.query.limit = "5";
-  req.query.sort = "-regularPrice";
+  req.query.sort = "regularPrice";
   // req.query.fields = "name,address";
   next();
 };
