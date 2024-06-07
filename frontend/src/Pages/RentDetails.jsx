@@ -49,6 +49,19 @@ const RentDetails = () => {
     localStorage.setItem("rentId", rentId);
   };
 
+  const handlesubmit = async () => {
+    const res = await axios.get(
+      `http://localhost:8000/api/v1/rents/top-5-cheap`,
+      {
+        headers: {
+          Authorization: `Bearer ${authUser.token}`, // Send token in Authorization header
+        },
+      }
+    );
+    const data = res.data;
+    setRentDetails(data.data);
+  };
+
   return (
     <div className="p-3">
       <Header />
@@ -89,6 +102,12 @@ const RentDetails = () => {
           <option value="regularPrice[gte]=2500">{`Price >= $2500`} </option>
         </select>
             </div>
+                <button
+                className=" px-3 mb-2 ml-3 p-1 border-2 border-black rounded-xl"
+                onClick={handlesubmit}
+              >
+                Top-5-cheap
+              </button>
             </div>
             <ul className="grid grid-cols-3 place-items-center">
               {rentDetails.map((Item) => (
