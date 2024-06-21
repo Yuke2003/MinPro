@@ -5,9 +5,10 @@ import { useAuthContext } from "../Context/authContext";
 import axios from "axios";
 import { FiMapPin } from "react-icons/fi";
 import Loader from "./Loader";
+import { Link } from "react-router-dom";
 
 const SellerProperty = () => {
-  const { authUser } = useAuthContext();
+  const { authUser,setUpdateId } = useAuthContext();
   const [getUser, setGetUser] = useState([]);
   const [loading,setLoading] = useState(false)
   const [rentId,setRentId] = useState("")
@@ -88,6 +89,14 @@ const SellerProperty = () => {
               </div>
 
               <div className="flex items-center justify-end gap-16 bg-[#f2eeee] w-80 h-auto p-5">
+                <Link to="/UpdateProperty">
+                    <button
+                      onClick={() => setUpdateId(Item.id)}
+                      className="bg-[#444] text-sm text-[#fff] p-3 rounded-lg "
+                    >
+                      Update
+                    </button>
+                  </Link>
                <button onClick={()=>handleDelete(Item.id)} className="bg-red-600 text-sm text-[#fff] p-3 rounded-lg ">Delete</button>
               </div>
             </li>
