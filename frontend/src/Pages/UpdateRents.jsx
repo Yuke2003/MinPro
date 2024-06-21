@@ -36,7 +36,7 @@ const UpdateRents = () => {
     setLoading(true);
     try {
       await axios.patch(
-        `http://localhost:8000/api/v1/rents/${updateId}`,
+        `https://minpro-1.onrender.com/api/v1/rents/${updateId}`,
         createInput,
         {
           headers: {
