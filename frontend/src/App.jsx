@@ -25,6 +25,7 @@ function App() {
         <Route path="/RentDetail" element={<RentDetails />} />
         <Route path="/ProfilePage" element={<ProfilePage />} />
         <Route path="/MyProperty" element={<SellerProperty />} />
+        <Route path="/UpdateProperty" element={<UpdateRents />} />
       </Routes>
     </>
   );
