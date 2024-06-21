@@ -8,6 +8,7 @@ import OneRentDetail from "./Pages/OneRentDetail";
 import ProfilePage from "./Pages/ProfilePage";
 import SellerProperty from "./Pages/SellerProperty";
 import RentDetails from "./Pages/RentDetails";
+import UpdateRents from "./Pages/UpdateRents";
 
 function App() {
   const { authUser } = useAuthContext();
