@@ -88,7 +88,7 @@ const SellerProperty = () => {
                 </div>
               </div>
 
-              <div className="flex items-center justify-end gap-16 bg-[#f2eeee] w-80 h-auto p-5">
+              <div className="flex items-center justify-between gap-16 bg-[#f2eeee] w-80 h-auto p-5">
                 <Link to="/UpdateProperty">
                     <button
                       onClick={() => setUpdateId(Item.id)}
