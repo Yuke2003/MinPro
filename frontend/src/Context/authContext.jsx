@@ -15,6 +15,7 @@ export const AuthContextProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [filename, setFilename] = useState("");
   const [rentId, setRentId] = useState(null);
+  const [updateId, setUpdateId] = useState(null);
 
   return (
     <AuthContext.Provider
@@ -27,6 +28,8 @@ export const AuthContextProvider = ({ children }) => {
         setFilename,
         rentId,
         setRentId,
+        updateId,
+        setUpdateId,
       }}
     >
       {children}
